@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="drum_machine_container">
+            <canvas class="sound_wave">
+
+            </canvas>
+            <div class="volume_and_name">
+                <div class="knob-surround">
+
+                    <div id="knob" class="knob"></div>
+
+                    <span class="min">Min</span>
+                    <span class="max">Max</span>
+
+                    <div id="tickContainer" class="ticks"></div>
+
+                </div>
+
+
+                <div id="showName" class="showName">
+
+                </div>
+            </div>
+
+            <div id="buttons_sounds_container" class="buttons_sounds_container">
+                <button class="sounds_btn" id="sounds_1"></button>
+                <button class="sounds_btn" id="sounds_2"></button>
+                <button class="sounds_btn" id="sounds_3"></button>
+                <button class="sounds_btn" id="sounds_4"></button>
+                <button class="sounds_btn" id="sounds_5"></button>
+                <button class="sounds_btn" id="sounds_6"></button>
+                <button class="sounds_btn" id="sounds_7"></button>
+                <button class="sounds_btn" id="sounds_8"></button>
+                <button class="sounds_btn" id="sounds_9"></button>
+            </div>
+            <div class="switch">
+
+                <!-- <p> Change beats </p> -->
+                <div class="switch_sounds_container">
+                    <p> Change beats </p>
+                    <input type="checkbox" name="switch_sounds" id="switch_sounds"
+                        class="switch_sounds turnOnOff_checkbox">
+                    <label for="switch_sounds" class="switch_sounds_label switch_container">
+
+                        <div class="switch_moving"></div>
+
+                    </label>
+                </div>
+
+                <div class="turnOnOff_container">
+                    <span class="On_Off_Span">OFF</span>
+
+                    <input type="checkbox" name="turnOnOff" class="turnOnOff_checkbox" id="turnOnOff_checkbox">
+                    <label for="turnOnOff_checkbox" class="turnOnOff_label" id="turnOnOff_label">
+                        <div class="circle_container">
+                            <div class="circle_moving"></div>
+                        </div>
+                    </label>
+                    <span class="On_Off_Span">ON</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- <script type="text/javascript" src="./src/jquery-3.6.3.js"></script> -->
+<script type="text/javascript" src="./src/index.js"></script>
+
+</html>

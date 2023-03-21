@@ -1,0 +1,293 @@
+:root {
+    --buttons-width: 75px;
+    --buttons-height: 50px;
+    box-sizing: border-box;
+}
+
+body {
+    height: auto;
+    overflow-y: auto;
+    font-size: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.drum_machine_container {
+    background: #3f3f3f;
+    border-radius: 16px;
+    width: 487px;
+    padding-right: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+/*-----------------------------------------------------------------------
+-------------------------SOUND WAVE ----------------------------
+-----------------------------------------------------------------------*/
+
+.sound_wave {
+    width: 261px;
+    height: 193px;
+    background: #222222;
+    box-shadow: inset 0px 0px 3px 4px rgba(0, 0, 0, 0.47);
+    border-radius: 3px;
+    padding-inline: 5px;
+    padding-bottom: 5px;
+    margin: 34px 16px 0px 29px;
+}
+
+
+/*---------------------------------------------------
+--------------------KNOB-----------------------------
+-----------------------------------------------------*/
+
+.knob-surround {
+    position: relative;
+    background-color: grey;
+    width: 9.2em;
+    height: 9.2em;
+    border-radius: 50%;
+    border: solid 0.25em #0e0e0e;
+    margin: 2.5em auto;
+    background: #181818;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #1d1d1d), color-stop(1, #131313));
+    background: -ms-linear-gradient(bottom, #1d1d1d, #131313);
+    background: -moz-linear-gradient(center bottom, #1d1d1d 0%, #131313 100%);
+    background: -o-linear-gradient(#131313, #1d1d1d);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#131313', endColorstr='#1d1d1d', GradientType=0);
+    -webkit-box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+}
+
+.knob {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    z-index: 10;
+}
+
+.knob:before {
+    content: "";
+    position: absolute;
+    bottom: 19%;
+    left: 19%;
+    width: 3%;
+    height: 3%;
+    background-color: #a8d8f8;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 0 0.4em 0 #79c3f4;
+    -moz-box-shadow: 0 0 0.4em 0 #79c3f4;
+    box-shadow: 0 0 0.4em 0 #79c3f4;
+}
+
+.min,
+.max {
+    display: block;
+    font-family: "Varela Round", sans-serif;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    font-size: 80%;
+    position: absolute;
+    opacity: 0.5;
+}
+
+.min {
+    bottom: 0;
+    left: -2.5em;
+}
+
+.max {
+    bottom: 0;
+    right: -3em;
+}
+
+.tick {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    overflow: visible;
+}
+
+.tick:after {
+    content: "";
+    width: 0.08em;
+    height: 0.6em;
+    background-color: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: -1.5em;
+    left: 50%;
+    -webkit-transition: all 180ms ease-out;
+    -moz-transition: all 180ms ease-out;
+    -o-transition: all 180ms ease-out;
+    transition: all 180ms ease-out;
+}
+
+.activetick:after {
+    background-color: #a8d8f8;
+    -webkit-box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    -moz-box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    -webkit-transition: all 50ms ease-in;
+    -moz-transition: all 50ms ease-in;
+    -o-transition: all 50ms ease-in;
+    transition: all 50ms ease-in;
+}
+
+
+/*-----------------------------------------------------------------------
+-------------------------Show audio name---------------------------------
+-----------------------------------------------------------------------*/
+
+.showName {
+    width: 135px;
+    height: 52px;
+    background: #222222;
+    border-radius: 6px;
+    box-shadow: inset 2px 4px 4px rgba(0, 0, 0, 0.25);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+/*-----------------------------------------------------------------------
+-------------------------BUTTONS WITH LIGHTS ----------------------------
+-----------------------------------------------------------------------*/
+
+
+.buttons_sounds_container {
+    display: grid;
+    grid: repeat(3, var(--buttons-height)) / repeat(3, var(--buttons-width));
+    gap: 11px 14px;
+    place-content: end start;
+    padding: 30px 40px 30px 25px;
+}
+
+.sounds_btn {
+    width: var(--buttons-width);
+    height: var(--buttons-height);
+    background: #D9D9D9;
+    border: none;
+    box-shadow: 3.5px 2.5px 1px 1px rgba(217, 217, 217, 0.65);
+    border-radius: 12px;
+    filter: drop-shadow(10px 7px 5px rgba(0, 0, 0, 0.28));
+}
+
+.switch {
+    align-self: flex-end;
+    padding-bottom: 30px;
+}
+
+/*-----------------------------------------------------------------------
+-------------------------SWITCHES ----------------------------
+-----------------------------------------------------------------------*/
+
+.switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 71px;
+}
+
+.turnOnOff_checkbox {
+    display: none;
+}
+
+.switch_sounds_container {
+    color: white;
+    font-size: 14px;
+}
+
+.switch_sounds_container p {
+    margin-bottom: 5px;
+}
+
+.switch_container {
+    width: 65px;
+    height: 35px;
+    display: block;
+    background: #222222;
+    border: 1px solid #000000;
+    box-shadow: inset -1px 0px 4px 3px rgba(0, 0, 0, 0.8);
+    position: relative;
+    margin: auto;
+}
+
+.switch_moving {
+    width: 25px;
+    height: 25px;
+    background: #0094FF;
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    transition: all .6s ease-in;
+}
+
+.turnOnOff_checkbox:checked~.switch_container .switch_moving {
+    left: 35px;
+}
+
+.turnOnOff_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.On_Off_Span {
+    color: white
+}
+
+.circle_container {
+    width: 70px;
+    height: 40px;
+    background: #222222;
+    border: 1px solid #000000;
+    box-shadow: inset -1px 0px 4px 3px rgba(0, 0, 0, 0.8);
+    border-radius: 37px;
+    border-radius: 37px;
+    position: relative;
+}
+
+.circle_moving {
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    width: 30px;
+    height: 30px;
+    background: #0094FF;
+    border-radius: 50%;
+    border: none;
+    margin: 0 5px;
+    transition: all .6s ease-in;
+}
+
+.turnOnOff_checkbox:checked~.turnOnOff_label .circle_container .circle_moving {
+    left: 30px;
+}
