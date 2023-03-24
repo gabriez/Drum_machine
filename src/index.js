@@ -85,10 +85,22 @@ function defineAudio (e) {
         document.getElementsByClassName('showName')[0].innerHTML = `<p>${beatName}</p>`;
         audioBeat.volume = globalAudioVolume;
         drawAudioMain(audioBeat);
-    }
-
-   
+    }   
  }
+
+function defineButtonColors (e) {
+    let buttonID = e.target.id;
+    if (buttonID == ("sounds_1"||"sounds_2"||"sounds_3"||"sounds_4"||"sounds_7")){
+
+    }
+    if (buttonID == ("sounds_5"||"sounds_6"||"sounds_8")){
+        
+    }
+    if (buttonID == "sounds_9"){
+        
+    }
+}
+
 
 /* -------------------MAIN----------------- */
 
@@ -278,10 +290,8 @@ const drawAudio = (analyser) => {
   analyser.getByteFrequencyData(dataArray);
   ctx.fillStyle = "#111111";
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  console.log(dataArray);
   // all the magic
   dataArray.forEach((decibel, index) => {
-    console.log("drawing");
     const c = index / bufferLength;
     const r = decibel + 25 * c;
     const g = 250 * c;
