@@ -5,14 +5,21 @@
 let buttonOn = false; 
 let switchBeat = false; 
 
+let beatRout = '../assets/';
+
 let beatSrc = {
-    firstBeat : '../assets/Clap.mp3',
-    secondBeat : '../assets/Heater-1.mp3',
-    thirdBeat: '../assets/Heater-2.mp3',
-    fourthBeat: '../assets/Heater-3.mp3',
-    fifthBeat: '../assets/Heater-4_1.mp3',
-    sixthBeat: '../assets/Open-hh.mp3'
+    firstBeat : beatRout + 'Clap.mp3',
+    secondBeat : beatRout + 'Heater-1.mp3',
+    thirdBeat: beatRout + 'Heater-2.mp3',
+    fourthBeat: beatRout + 'Heater-3.mp3',
+    fifthBeat: beatRout + 'Heater-4_1.mp3',
+    sixthBeat: beatRout + 'Open-hh.mp3',
+    seventhBeat: beatRout + 'Stressed-out.mp3',
+    eightBeat: beatRout + 'Moscow-mule.mp3',
+    ninethBeat: beatRout + 'Sunflower.mp3'
 }
+
+// Style, HUMBLE, Ojos-color-sol, Ojos-marrones, 512, Fluorescent-Adolescent, Until_I_Found_You, Breezeblocks, Provenza
 
 let soundsBTN = document.getElementsByClassName('sounds_btn');
 let knobPositionX;
@@ -36,7 +43,34 @@ let volumeKnob = document.getElementById("knob");
 let boundingRectangle = volumeKnob.getBoundingClientRect(); //get rectangular geometric data of knob (x, y, width, height)
 let globalAudioVolume = 0;
 let checkOnOff = document.getElementById('turnOnOff_checkbox');
+let changeBeats = document.getElementById('switch_sounds');
 /*-----------------------BUTTONS--------------------*/
+
+
+
+function defineButtonColors (buttonID, audioButton) {
+    let element = document.getElementById(buttonID);
+   
+    if (audioButton.ended){
+        
+        element.style.background = "#D9D9D9";
+    } else {
+        
+        if (buttonID == ("sounds_1"||"sounds_2"||"sounds_3"||"sounds_4"||"sounds_7")){
+            element.style.background = "blue";
+        }
+
+        if (buttonID == ("sounds_5"||"sounds_6"||"sounds_8")){
+        
+        }
+        if (buttonID == "sounds_9"){
+           
+        }
+    }
+
+
+}
+
 function defineAudio (e) {
 /* DEFINE BEATS NAMES AND AUDIOS */
     let beatName = "";
@@ -67,38 +101,40 @@ function defineAudio (e) {
          beatLink = beatSrc.sixthBeat;
          beatName = 'Open-hh';
          break
-     // case 'sounds_7':
-     //  return beatSrc.firstBeat;
-     // case 'sounds_8':
-     //  return beatSrc.firstBeat;
-     // case 'sounds_9':   
-     //  return beatSrc.firstBeat;
+    case 'sounds_7':
+        beatLink = beatSrc.seventhBeat;
+        beatName = 'Stressed Out Remix';
+    break
+    case 'sounds_8':
+        beatLink = beatSrc.eightBeat;
+        beatName = 'Moscow Mule';
+    break;
+    case 'sounds_9':   
+        beatLink = beatSrc.ninethBeat;
+        beatName = 'Sunflower';
+     break;
      default:
         break;
     }
 
     
-    
+    audioBeat.pause();
     audioBeat = new Audio(beatLink);
-    
+    audioBeat.volume = globalAudioVolume;
+
+
     if (checkOnOff.checked) {
-        document.getElementsByClassName('showName')[0].innerHTML = `<p>${beatName}</p>`;
-        audioBeat.volume = globalAudioVolume;
-        drawAudioMain(audioBeat);
+
+    document.getElementsByClassName('showName')[0].innerHTML = `<p>${beatName}</p>`;
+        
+    drawAudioMain(audioBeat);
+        // defineButtonColors(soundID, audioBeat);
     }   
  }
 
-function defineButtonColors (e) {
-    let buttonID = e.target.id;
-    if (buttonID == ("sounds_1"||"sounds_2"||"sounds_3"||"sounds_4"||"sounds_7")){
 
-    }
-    if (buttonID == ("sounds_5"||"sounds_6"||"sounds_8")){
-        
-    }
-    if (buttonID == "sounds_9"){
-        
-    }
+function pressButton (e) {
+    e.target.id
 }
 
 
@@ -106,11 +142,54 @@ function defineButtonColors (e) {
 
 function main()
 {
+
+
     //start at zero volume
     
     for(let button of soundsBTN){
         button.addEventListener('click', defineAudio);
+        // button.addEventListener('keypress', );
     }
+
+        document.onkeydown = (e) => {
+      e = e || window.event;
+
+      switch (e.which || e.keyCode) {
+        case 81 :
+            soundsBTN[0].click();
+            break;
+        case 87 :
+            soundsBTN[1].click();
+            break;
+        case 69 :
+            soundsBTN[2].click();
+            break;            
+        case 65 :
+            soundsBTN[3].click();
+            break;
+        case 83 :
+            soundsBTN[4].click();
+            break;
+        case 68 :
+            soundsBTN[5].click();
+            break;            
+        case 90 :
+            soundsBTN[6].click();
+            break;
+        case 88 :
+            soundsBTN[7].click();
+            break;
+        case 67 :
+            soundsBTN[8].click();
+            break;            
+        }
+    }
+
+    checkOnOff.addEventListener('change', (event) => {
+        if (!event.currentTarget.checked) {
+            audioBeat.pause();
+        }
+    })
     
     volumeKnob.addEventListener(getMouseDown(), onMouseDown); //listen for mouse button click
 
@@ -179,7 +258,7 @@ function onMouseMove(event)
         createTicks(27, tickHighlightPosition); //highlight ticks
          //set audio volume
         globalAudioVolume = volumeSetting / 100;
-       
+        audioBeat.volume = globalAudioVolume;
     }
 }
 
@@ -261,6 +340,7 @@ function getMouseMove()
 main();
 
 
+
 /* KNOB CREDIT FOR KEVIN LAM https://codepen.io/kevin-lam-the-scripter/pen/QWNeNvo */
 
 
@@ -293,13 +373,12 @@ const drawAudio = (analyser) => {
   // all the magic
   dataArray.forEach((decibel, index) => {
     const c = index / bufferLength;
-    const r = decibel + 25 * c;
+    const r = decibel + 100 * c;
     const g = 250 * c;
-    const b = 250;
-    
+    const b = 200;
     ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
-    ctx.fillRect(x, HEIGHT - decibel, barWidth, decibel - 1);
-    x += barWidth + 1;
+    ctx.fillRect(x, HEIGHT - decibel/1.37, barWidth, decibel/1.37);
+    x += barWidth + 0.5;
   });
   
 };
@@ -332,3 +411,5 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 
  
 // Credits for Hector Bliss https://www.youtube.com/watch?v=B_nytc1jJE0&t=614s
+
+
