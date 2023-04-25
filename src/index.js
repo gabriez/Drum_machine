@@ -7,18 +7,6 @@ let switchBeat = false;
 
 let beatRout = '../assets/';
 
-let beatSrc = {
-    firstBeat : beatRout + 'Clap.mp3',
-    secondBeat : beatRout + 'Heater-1.mp3',
-    thirdBeat: beatRout + 'Heater-2.mp3',
-    fourthBeat: beatRout + 'Heater-3.mp3',
-    fifthBeat: beatRout + 'Heater-4_1.mp3',
-    sixthBeat: beatRout + 'Open-hh.mp3',
-    seventhBeat: beatRout + 'Stressed-out.mp3',
-    eightBeat: beatRout + 'Moscow-mule.mp3',
-    ninethBeat: beatRout + 'Sunflower.mp3'
-}
-
 // Style, HUMBLE, Ojos-color-sol, Ojos-marrones, 512, Fluorescent-Adolescent, Until_I_Found_You, Breezeblocks, Provenza
 
 let soundsBTN = document.getElementsByClassName('sounds_btn');
@@ -44,113 +32,168 @@ let boundingRectangle = volumeKnob.getBoundingClientRect(); //get rectangular ge
 let globalAudioVolume = 0;
 let checkOnOff = document.getElementById('turnOnOff_checkbox');
 let changeBeats = document.getElementById('switch_sounds');
-/*-----------------------BUTTONS--------------------*/
+let showName = document.getElementsByClassName('showName')[0];
 
-
-
-function defineButtonColors (buttonID, audioButton) {
-    let element = document.getElementById(buttonID);
-   
-    if (audioButton.ended){
-        
-        element.style.background = "#D9D9D9";
-    } else {
-        
-        if (buttonID == ("sounds_1"||"sounds_2"||"sounds_3"||"sounds_4"||"sounds_7")){
-            element.style.background = "blue";
-        }
-
-        if (buttonID == ("sounds_5"||"sounds_6"||"sounds_8")){
-        
-        }
-        if (buttonID == "sounds_9"){
-           
-        }
+let beatSrc = {
+    firstBeat : {
+       route: beatRout + (!changeBeats.checked ? 'Clap.mp3' : 'Style.mp3'),
+        name: !changeBeats.checked ? 'Clap' : 'Style'
+    },
+    secondBeat : {
+        route: beatRout + (!changeBeats.checked ? 'Heater-1.mp3' : 'HUMBLE.mp3'),
+        name: !changeBeats.checked ? 'Heater-1' : 'Humble'
+    },
+    thirdBeat: {
+        route:beatRout + (!changeBeats.checked ? 'Heater-2.mp3' : 'Fluorescent-Adolescent.mp3'),
+        name: !changeBeats.checked ? 'Heater-2' : 'Fluorescent Adolescent'
+    },
+    fourthBeat: {
+        route:beatRout + (!changeBeats.checked ? 'Heater-3.mp3' : 'Until_I_Found_You.mp3'),
+        name: !changeBeats.checked ? 'Heater-3' : 'Until I Found You'
+    },
+    fifthBeat: {
+        route:beatRout + (!changeBeats.checked ? 'Heater-4_1.mp3' : 'Breezeblocks.mp3'),
+        name: !changeBeats.checked ? 'Heater-4' : 'Breezeblocks'
+    },
+    sixthBeat: {
+        route:beatRout + (!changeBeats.checked ? 'Open-hh.mp3' : 'Ojos-color-sol.mp3'),
+        name: !changeBeats.checked ? 'Open-hh' : 'Ojos color sol'
+    },
+    seventhBeat: {
+        route:beatRout + (!changeBeats.checked ? 'Stressed-out.mp3' : 'Ojos-marrones.mp3'),
+        name: !changeBeats.checked ? 'Stressed Out Remix' : 'Ojos marrones'
+    },
+    eightBeat: {
+        route:beatRout + (!changeBeats.checked ? 'Moscow-mule.mp3' : '512.mp3'),
+        name: !changeBeats.checked ? 'Moscow-mule' : '512'
+    },
+    ninethBeat: {
+        route:beatRout + (!changeBeats.checked ? 'Sunflower.mp3' : 'Heart-Afire.mp3'),
+        name: !changeBeats.checked ? 'Sunflower' : 'Heart Afire'
     }
-
-
 }
 
-function defineAudio (e) {
+
+// Style, HUMBLE, Ojos-color-sol, Ojos-marrones, 512, Fluorescent-Adolescent, Until_I_Found_You, Breezeblocks, Provenza
+
+/*-----------------------BUTTONS--------------------*/
+
+function defineAudio (e) {    
 /* DEFINE BEATS NAMES AND AUDIOS */
     let beatName = "";
     let beatLink = "";
     let soundID = e.target.id;
     switch (soundID) {
      case 'sounds_1':
-        beatLink = beatSrc.firstBeat;
-        beatName = 'Clap';
+        beatLink = beatSrc.firstBeat.route;
+        beatName = beatSrc.firstBeat.name;
         break;
      case 'sounds_2':
-         beatLink = beatSrc.secondBeat;
-         beatName = 'Heater-1';
+         beatLink = beatSrc.secondBeat.route;
+         beatName = beatSrc.secondBeat.name;
          break;
      case 'sounds_3':
-         beatLink = beatSrc.thirdBeat;
-         beatName = 'Heater-2';
+         beatLink = beatSrc.thirdBeat.route;
+         beatName = beatSrc.thirdBeat.name;
          break
      case 'sounds_4':
-         beatLink = beatSrc.fourthBeat;
-         beatName = 'Heater-3';
+         beatLink = beatSrc.fourthBeat.route;
+         beatName = beatSrc.fourthBeat.name;
          break
      case 'sounds_5':
-         beatLink = beatSrc.fifthBeat;
-         beatName = 'Heater-4';
+         beatLink = beatSrc.fifthBeat.route;
+         beatName = beatSrc.fifthBeat.name;
          break
      case 'sounds_6':
-         beatLink = beatSrc.sixthBeat;
-         beatName = 'Open-hh';
+         beatLink = beatSrc.sixthBeat.route;
+         beatName = beatSrc.sixthBeat.name;
          break
     case 'sounds_7':
-        beatLink = beatSrc.seventhBeat;
-        beatName = 'Stressed Out Remix';
+        beatLink = beatSrc.seventhBeat.route;
+        beatName = beatSrc.seventhBeat.name;
     break
     case 'sounds_8':
-        beatLink = beatSrc.eightBeat;
-        beatName = 'Moscow Mule';
+        beatLink = beatSrc.eightBeat.route;
+        beatName = beatSrc.eightBeat.name;
     break;
     case 'sounds_9':   
-        beatLink = beatSrc.ninethBeat;
-        beatName = 'Sunflower';
+        beatLink = beatSrc.ninethBeat.route;
+        beatName = beatSrc.ninethBeat.name;
      break;
      default:
         break;
     }
-
-    
+ 
+ 
+   
     audioBeat.pause();
+   
     audioBeat = new Audio(beatLink);
     audioBeat.volume = globalAudioVolume;
 
-
     if (checkOnOff.checked) {
-
-    document.getElementsByClassName('showName')[0].innerHTML = `<p>${beatName}</p>`;
+    showName.innerHTML = `<p>${beatName}</p>`;
         
-    drawAudioMain(audioBeat);
-        // defineButtonColors(soundID, audioBeat);
+    drawAudioMain(audioBeat, soundID);
+    console.log(audioBeat);
+    //defineButtonColors(true, soundID);
+    
     }   
  }
-
-
-function pressButton (e) {
-    e.target.id
-}
-
 
 /* -------------------MAIN----------------- */
 
 function main()
 {
 
-
+    changeBeats.addEventListener('change', (e) => {
+        beatSrc = {
+            firstBeat : {
+                route: beatRout + (!changeBeats.checked ? 'Clap.mp3' : 'Style.mp3'),
+                 name: !changeBeats.checked ? 'Clap' : 'Style'
+             },
+             secondBeat : {
+                 route: beatRout + (!changeBeats.checked ? 'Heater-1.mp3' : 'HUMBLE.mp3'),
+                 name: !changeBeats.checked ? 'Heater-1' : 'Humble'
+             },
+             thirdBeat: {
+                 route:beatRout + (!changeBeats.checked ? 'Heater-2.mp3' : 'Fluorescent-Adolescent.mp3'),
+                 name: !changeBeats.checked ? 'Heater-2' : 'Fluorescent Adolescent'
+             },
+             fourthBeat: {
+                 route:beatRout + (!changeBeats.checked ? 'Heater-3.mp3' : 'Until_I_Found_You.mp3'),
+                 name: !changeBeats.checked ? 'Heater-3' : 'Until I Found You'
+             },
+             fifthBeat: {
+                 route:beatRout + (!changeBeats.checked ? 'Heater-4_1.mp3' : 'Breezeblocks.mp3'),
+                 name: !changeBeats.checked ? 'Heater-4' : 'Breezeblocks'
+             },
+             sixthBeat: {
+                 route:beatRout + (!changeBeats.checked ? 'Open-hh.mp3' : 'Ojos-color-sol.mp3'),
+                 name: !changeBeats.checked ? 'Open-hh' : 'Ojos color sol'
+             },
+             seventhBeat: {
+                 route:beatRout + (!changeBeats.checked ? 'Stressed-out.mp3' : 'Ojos-marrones.mp3'),
+                 name: !changeBeats.checked ? 'Stressed Out Remix' : 'Ojos marrones'
+             },
+             eightBeat: {
+                 route:beatRout + (!changeBeats.checked ? 'Moscow-mule.mp3' : '512.mp3'),
+                 name: !changeBeats.checked ? 'Moscow-mule' : '512'
+             },
+             ninethBeat: {
+                 route:beatRout + (!changeBeats.checked ? 'Sunflower.mp3' : 'Provenza.mp3'),
+                 name: !changeBeats.checked ? 'Sunflower' : 'Provenza'
+             }
+        };
+    })
     //start at zero volume
+   
     
+
     for(let button of soundsBTN){
         button.addEventListener('click', defineAudio);
-        // button.addEventListener('keypress', );
     }
-
+ 
         document.onkeydown = (e) => {
       e = e || window.event;
 
@@ -188,6 +231,7 @@ function main()
     checkOnOff.addEventListener('change', (event) => {
         if (!event.currentTarget.checked) {
             audioBeat.pause();
+            showName.innerHTML = ``;
         }
     })
     
@@ -351,11 +395,10 @@ main();
 
 
 // 1. Definir los elementos y los eventos
-const canvas = document.querySelector("canvas");
+const canvas = document.getElementsByClassName("sound_wave")[0];
 const ctx = canvas.getContext("2d");
 canvas.width = "253";
 canvas.height = "193";
-
 
 // 3. Crear la animación con canvas
 const drawAudio = (analyser) => {
@@ -365,23 +408,52 @@ const drawAudio = (analyser) => {
   requestAnimationFrame(() => drawAudio(analyser));
   const bufferLength = analyser.frequencyBinCount;
   const dataArray = new Uint8Array(bufferLength);
-  const barWidth = (WIDTH / bufferLength)*1.75;
+  const barWidth = (WIDTH / bufferLength)*1.2;
   let x = 0;
   analyser.getByteFrequencyData(dataArray);
   ctx.fillStyle = "#111111";
   ctx.clearRect(0,0,canvas.width,canvas.height);
+
   // all the magic
   dataArray.forEach((decibel, index) => {
     const c = index / bufferLength;
     const r = decibel + 100 * c;
     const g = 250 * c;
     const b = 200;
+    
     ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
     ctx.fillRect(x, HEIGHT - decibel/1.37, barWidth, decibel/1.37);
-    x += barWidth + 0.5;
+    x += barWidth + 0.75;
   });
-  
+
 };
+
+
+const drawColors = (analyser, red, green, elementoButton) => {
+    
+   
+    requestAnimationFrame(() => drawColors(analyser, red, green, elementoButton));
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+    analyser.getByteFrequencyData(dataArray);
+    let  r = red, g = green, b = 200; 
+
+    let sum = 0;
+    for(let i = 0; i < bufferLength; i++) {
+        sum += dataArray[i];
+    }
+
+    //Change CSS according to threshold
+    let avg = (sum / bufferLength) / 5;
+   if(avg < 0.2){
+    elementoButton.style.backgroundColor = "rgb(34, 34, 34)";
+    elementoButton.style.filter = "drop-shadow(5px 2px 5px rgba(0, 0, 0, 0.28))";
+   } else {
+    elementoButton.style.backgroundColor = `rgba(${r * avg}, ${g * avg * 0.1}, ${b}, 1)`;
+    elementoButton.style.filter = `drop-shadow(0 0 ${avg * 0.8}px rgba(${r * avg}, ${g * avg *0.1}, ${b}, 0.8))`;    
+   }    
+    
+}
 
 // 2. Crear el analyser y la data necesaria
 const initAnalyser = async (audio) => {
@@ -395,9 +467,13 @@ const initAnalyser = async (audio) => {
   return analyser;
 };
 
-const drawAudioMain = async (audio) => {
+const drawAudioMain = async (audio, buttonID) => {
   const analyser = await initAnalyser(audio);
   drawAudio(analyser);
+  let redVar = Math.random() * 100, greenVar =  Math.random() * 100;
+
+  const elemento = document.getElementById(buttonID);
+  drawColors(analyser, redVar, greenVar, elemento);
   audio.play();
   // dibujar
   

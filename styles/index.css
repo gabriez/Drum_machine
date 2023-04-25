@@ -20,6 +20,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgb(31, 34, 43);
 }
 
 .drum_machine_container {
@@ -167,7 +168,7 @@ body {
     height: 52px;
     background: #222222;
     border-radius: 6px;
-    box-shadow: inset 2px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: in2et 2px 4px 4px rgba(0, 0, 0, 0.25);
     color: white;
     display: flex;
     justify-content: center;
@@ -193,13 +194,79 @@ body {
 .sounds_btn {
     width: var(--buttons-width);
     height: var(--buttons-height);
-    background: #D9D9D9;
+    background: rgb(34, 34, 34);
+    background-size: 200%;
+    background-position: 50% 50%;
     border: none;
-    box-shadow: 3.5px 2.5px 1px 1px rgba(217, 217, 217, 0.65);
+    /*box-shadow: 3.5px 2.5px 1px 1px rgba(217, 217, 217, 0.65);*/
     border-radius: 12px;
-    filter: drop-shadow(10px 7px 5px rgba(0, 0, 0, 0.28));
-    transition: background 2ms ease;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.28));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /*animation-play-state: ;*/
 }
+
+#sound_1_block {
+    width: 75px;
+    height: 50px;
+    border-radius: 12px;
+}
+
+/*
+#sounds_1 {
+  animation: animate 0.9s linear infinite;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.28));
+}
+
+@keyframes animate {
+    0% {
+        background: rgb(255, 0, 0);
+        filter: drop-shadow(2px 2px 5px rgba(255, 0, 0, 0.6));
+    }
+
+    12.5% {
+        background: rgb(0, 0, 255);
+        filter: drop-shadow(2px 2px 5px rgba(0, 0, 255, 0.6));
+    }
+
+    25% {
+        background: rgb(0, 128, 0);
+        filter: drop-shadow(2px 2px 5px rgba(0, 128, 0, 0.6));
+    }
+
+    37.5% {
+        background: rgb(255, 255, 0);
+        filter: drop-shadow(2px 2px 5px rgba(255, 255, 0.6));
+    }
+
+    50% {
+        background: #e11d74;
+        filter: drop-shadow(2px 2px 5px rgba(225, 29, 116, 0.6));
+    }
+
+    62.5% {
+        background: black;
+        filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.6));
+    }
+
+    75% {
+        background: rgb(255, 255, 0);
+        filter: drop-shadow(2px 2px 5px rgba(255, 255, 0, 0.6));
+    }
+
+    87.5% {
+        background: rgb(170, 0, 0);
+        filter: drop-shadow(2px 2px 5px rgba(255, 255, 0, 0.6));
+    }
+
+    100% {
+        background: rgb(255, 0, 0);
+        filter: drop-shadow(2px 2px 5px rgba(255, 0, 0, 0.6));
+    }
+}
+*/
 
 .switch {
     align-self: flex-end;
