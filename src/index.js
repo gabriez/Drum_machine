@@ -1,11 +1,25 @@
+import './styles/index.css'
+import Clap from './assets/Clap.mp3';
+import Style from './assets/Style.mp3'
+import Humble from './assets/HUMBLE.mp3';
+import Heater1 from './assets/Heater-1.mp3'
+import Sunflower from './assets/Sunflower.mp3'
+import Provenza from './assets/Provenza.mp3'
+import Heater2 from './assets/Heater-2.mp3'
+import Heater3 from './assets/Heater-3.mp3'
+import Heater4 from './assets/Heater-4_1.mp3'
+import Moscow from './assets/Moscow-mule.mp3'
+import OpenHH from './assets/Open-hh.mp3'
+import Quinientos from './assets/512.mp3'
+import Fluorescent from './assets/Fluorescent-Adolescent.mp3'
+import OjosMarrones from './assets/Ojos-marrones.mp3'
+import UntilFound from './assets/Until_I_Found_You.mp3'
+import Breezeblocks from './assets/Breezeblocks.mp3'
+import Stressed from './assets/Stressed-out.mp3'
+import Ojos from './assets/Ojos-color-sol.mp3'
 /*------------------------------------------------------------------------
 /------------------------------KNOB---------------------------------------
 /------------------------------------------------------------------------*/
-
-let buttonOn = false; 
-let switchBeat = false; 
-
-let beatRout = '../assets/';
 
 // Style, HUMBLE, Ojos-color-sol, Ojos-marrones, 512, Fluorescent-Adolescent, Until_I_Found_You, Breezeblocks, Provenza
 
@@ -23,7 +37,7 @@ let getRadiansInDegrees;
 let finalAngleInDegrees;
 let volumeSetting;
 let tickHighlightPosition;
-let audioBeat = new Audio(''); 
+let audioBeat = new Audio(); 
 //Celine Dion's "Ashes"
 let startingTickAngle = -135;
 let tickContainer = document.getElementById("tickContainer");
@@ -36,43 +50,44 @@ let showName = document.getElementsByClassName('showName')[0];
 
 let beatSrc = {
     firstBeat : {
-       route: beatRout + (!changeBeats.checked ? 'Clap.mp3' : 'Style.mp3'),
-        name: !changeBeats.checked ? 'Clap' : 'Style'
+       route: Clap ,
+        name: 'Clap'
     },
     secondBeat : {
-        route: beatRout + (!changeBeats.checked ? 'Heater-1.mp3' : 'HUMBLE.mp3'),
-        name: !changeBeats.checked ? 'Heater-1' : 'Humble'
+        route:  Heater1,
+        name:  'Heater-1'
     },
     thirdBeat: {
-        route:beatRout + (!changeBeats.checked ? 'Heater-2.mp3' : 'Fluorescent-Adolescent.mp3'),
-        name: !changeBeats.checked ? 'Heater-2' : 'Fluorescent Adolescent'
+        route: Heater2,
+        name:  'Heater-2'
     },
     fourthBeat: {
-        route:beatRout + (!changeBeats.checked ? 'Heater-3.mp3' : 'Until_I_Found_You.mp3'),
-        name: !changeBeats.checked ? 'Heater-3' : 'Until I Found You'
+        route: Heater3,
+        name:  'Heater-3'
     },
     fifthBeat: {
-        route:beatRout + (!changeBeats.checked ? 'Heater-4_1.mp3' : 'Breezeblocks.mp3'),
-        name: !changeBeats.checked ? 'Heater-4' : 'Breezeblocks'
+        route: Heater4 ,
+        name:  'Heater-4' 
     },
     sixthBeat: {
-        route:beatRout + (!changeBeats.checked ? 'Open-hh.mp3' : 'Ojos-color-sol.mp3'),
-        name: !changeBeats.checked ? 'Open-hh' : 'Ojos color sol'
+        route: OpenHH,
+        name:  'Open-hh'
     },
     seventhBeat: {
-        route:beatRout + (!changeBeats.checked ? 'Stressed-out.mp3' : 'Ojos-marrones.mp3'),
-        name: !changeBeats.checked ? 'Stressed Out Remix' : 'Ojos marrones'
+        route: Stressed ,
+        name:  'Stressed Out Remix' 
     },
     eightBeat: {
-        route:beatRout + (!changeBeats.checked ? 'Moscow-mule.mp3' : '512.mp3'),
-        name: !changeBeats.checked ? 'Moscow-mule' : '512'
+        route: Moscow,
+        name:  'Moscow-mule'
     },
     ninethBeat: {
-        route:beatRout + (!changeBeats.checked ? 'Sunflower.mp3' : 'Heart-Afire.mp3'),
-        name: !changeBeats.checked ? 'Sunflower' : 'Heart Afire'
+        route: Sunflower,
+        name:  'Sunflower'
     }
 }
 
+console.log("hola");
 
 // Style, HUMBLE, Ojos-color-sol, Ojos-marrones, 512, Fluorescent-Adolescent, Until_I_Found_You, Breezeblocks, Provenza
 
@@ -123,11 +138,10 @@ function defineAudio (e) {
      default:
         break;
     }
- 
+    console.log(beatLink);
  
    
     audioBeat.pause();
-   
     audioBeat = new Audio(beatLink);
     audioBeat.volume = globalAudioVolume;
 
@@ -135,8 +149,6 @@ function defineAudio (e) {
     showName.innerHTML = `<p>${beatName}</p>`;
         
     drawAudioMain(audioBeat, soundID);
-    console.log(audioBeat);
-    //defineButtonColors(true, soundID);
     
     }   
  }
@@ -149,41 +161,41 @@ function main()
     changeBeats.addEventListener('change', (e) => {
         beatSrc = {
             firstBeat : {
-                route: beatRout + (!changeBeats.checked ? 'Clap.mp3' : 'Style.mp3'),
+                route: !changeBeats.checked ? Clap : Style,
                  name: !changeBeats.checked ? 'Clap' : 'Style'
              },
              secondBeat : {
-                 route: beatRout + (!changeBeats.checked ? 'Heater-1.mp3' : 'HUMBLE.mp3'),
-                 name: !changeBeats.checked ? 'Heater-1' : 'Humble'
-             },
-             thirdBeat: {
-                 route:beatRout + (!changeBeats.checked ? 'Heater-2.mp3' : 'Fluorescent-Adolescent.mp3'),
-                 name: !changeBeats.checked ? 'Heater-2' : 'Fluorescent Adolescent'
-             },
-             fourthBeat: {
-                 route:beatRout + (!changeBeats.checked ? 'Heater-3.mp3' : 'Until_I_Found_You.mp3'),
-                 name: !changeBeats.checked ? 'Heater-3' : 'Until I Found You'
-             },
-             fifthBeat: {
-                 route:beatRout + (!changeBeats.checked ? 'Heater-4_1.mp3' : 'Breezeblocks.mp3'),
-                 name: !changeBeats.checked ? 'Heater-4' : 'Breezeblocks'
-             },
-             sixthBeat: {
-                 route:beatRout + (!changeBeats.checked ? 'Open-hh.mp3' : 'Ojos-color-sol.mp3'),
-                 name: !changeBeats.checked ? 'Open-hh' : 'Ojos color sol'
-             },
-             seventhBeat: {
-                 route:beatRout + (!changeBeats.checked ? 'Stressed-out.mp3' : 'Ojos-marrones.mp3'),
-                 name: !changeBeats.checked ? 'Stressed Out Remix' : 'Ojos marrones'
-             },
-             eightBeat: {
-                 route:beatRout + (!changeBeats.checked ? 'Moscow-mule.mp3' : '512.mp3'),
-                 name: !changeBeats.checked ? 'Moscow-mule' : '512'
-             },
-             ninethBeat: {
-                 route:beatRout + (!changeBeats.checked ? 'Sunflower.mp3' : 'Provenza.mp3'),
-                 name: !changeBeats.checked ? 'Sunflower' : 'Provenza'
-             }
+                route: !changeBeats.checked ? Heater1 : Humble,
+                name: !changeBeats.checked ? 'Heater-1' : 'Humble'
+            },
+            thirdBeat: {
+                route:!changeBeats.checked ? Heater2: Fluorescent,
+                name: !changeBeats.checked ? 'Heater-2' : 'Fluorescent Adolescent'
+            },
+            fourthBeat: {
+                route:!changeBeats.checked ? Heater3 : UntilFound,
+                name: !changeBeats.checked ? 'Heater-3' : 'Until I Found You'
+            },
+            fifthBeat: {
+                route:!changeBeats.checked ? Heater4 : Breezeblocks,
+                name: !changeBeats.checked ? 'Heater-4' : 'Breezeblocks'
+            },
+            sixthBeat: {
+                route:!changeBeats.checked ? OpenHH: Ojos,
+                name: !changeBeats.checked ? 'Open-hh' : 'Ojos color sol'
+            },
+            seventhBeat: {
+                route:!changeBeats.checked ? Stressed : OjosMarrones,
+                name: !changeBeats.checked ? 'Stressed Out Remix' : 'Ojos marrones'
+            },
+            eightBeat: {
+                route:!changeBeats.checked ? Moscow : Quinientos,
+                name: !changeBeats.checked ? 'Moscow-mule' : '512'
+            },
+            ninethBeat: {
+                route:!changeBeats.checked ? Sunflower : Provenza,
+                name: !changeBeats.checked ? 'Sunflower' : 'Provenza'
+            }
         };
     })
     //start at zero volume
@@ -399,7 +411,7 @@ const canvas = document.getElementsByClassName("sound_wave")[0];
 const ctx = canvas.getContext("2d");
 canvas.width = "253";
 canvas.height = "193";
-
+console.log("hola");
 // 3. Crear la animación con canvas
 const drawAudio = (analyser) => {
   
