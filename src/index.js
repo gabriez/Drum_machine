@@ -87,7 +87,7 @@ let beatSrc = {
     }
 }
 
-console.log("hola");
+
 
 // Style, HUMBLE, Ojos-color-sol, Ojos-marrones, 512, Fluorescent-Adolescent, Until_I_Found_You, Breezeblocks, Provenza
 
@@ -138,12 +138,12 @@ function defineAudio (e) {
      default:
         break;
     }
-    console.log(beatLink);
  
    
     audioBeat.pause();
     audioBeat = new Audio(beatLink);
     audioBeat.volume = globalAudioVolume;
+    audioBeat.crossOrigin = "anonymous";
 
     if (checkOnOff.checked) {
     showName.innerHTML = `<p>${beatName}</p>`;
@@ -409,9 +409,8 @@ main();
 // 1. Definir los elementos y los eventos
 const canvas = document.getElementsByClassName("sound_wave")[0];
 const ctx = canvas.getContext("2d");
-canvas.width = "253";
-canvas.height = "193";
-console.log("hola");
+canvas.width = "300";
+canvas.height = "250";
 // 3. Crear la animación con canvas
 const drawAudio = (analyser) => {
   
@@ -434,7 +433,7 @@ const drawAudio = (analyser) => {
     const b = 200;
     
     ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
-    ctx.fillRect(x, HEIGHT - decibel/1.37, barWidth, decibel/1.37);
+    ctx.fillRect(x, HEIGHT - decibel/1.05, barWidth, decibel/1.05);
     x += barWidth + 0.75;
   });
 
