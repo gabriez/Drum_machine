@@ -45,7 +45,9 @@ let volumeKnob = document.getElementById("knob");
 let boundingRectangle = volumeKnob.getBoundingClientRect(); //get rectangular geometric data of knob (x, y, width, height)
 let globalAudioVolume = 0;
 let checkOnOff = document.getElementById('turnOnOff_checkbox');
+let checkOnMobile = document.getElementById('turnOnOff_checkbox_mobile');
 let changeBeats = document.getElementById('switch_sounds');
+let changeBeatsMobile = document.getElementById('switch_sounds_mobile');
 let showName = document.getElementsByClassName('showName')[0];
 
 let beatSrc = {
@@ -153,51 +155,67 @@ function defineAudio (e) {
     }   
  }
 
+const changeTheBeat = (e) => {
+    beatSrc = {
+        firstBeat : {
+            route: !e.currentTarget.checked ? Clap : Style,
+             name: !e.currentTarget.checked ? 'Clap' : 'Style'
+         },
+         secondBeat : {
+            route: !e.currentTarget.checked ? Heater1 : Humble,
+            name: !e.currentTarget.checked ? 'Heater-1' : 'Humble'
+        },
+        thirdBeat: {
+            route:!e.currentTarget.checked ? Heater2: Fluorescent,
+            name: !e.currentTarget.checked ? 'Heater-2' : 'Fluorescent Adolescent'
+        },
+        fourthBeat: {
+            route:!e.currentTarget.checked ? Heater3 : UntilFound,
+            name: !e.currentTarget.checked ? 'Heater-3' : 'Until I Found You'
+        },
+        fifthBeat: {
+            route:!e.currentTarget.checked ? Heater4 : Breezeblocks,
+            name: !e.currentTarget.checked ? 'Heater-4' : 'Breezeblocks'
+        },
+        sixthBeat: {
+            route:!e.currentTarget.checked ? OpenHH: Ojos,
+            name: !e.currentTarget.checked ? 'Open-hh' : 'Ojos color sol'
+        },
+        seventhBeat: {
+            route:!e.currentTarget.checked ? Stressed : OjosMarrones,
+            name: !e.currentTarget.checked ? 'Stressed Out Remix' : 'Ojos marrones'
+        },
+        eightBeat: {
+            route:!e.currentTarget.checked ? Moscow : Quinientos,
+            name: !e.currentTarget.checked ? 'Moscow-mule' : '512'
+        },
+        ninethBeat: {
+            route:!e.currentTarget.checked ? Sunflower : Provenza,
+            name: !e.currentTarget.checked ? 'Sunflower' : 'Provenza'
+        }
+    };
+
+    changeBeats.checked = e.currentTarget.checked; 
+    changeBeatsMobile.checked = e.currentTarget.checked; 
+}
+
+const controlPower = (event) => {
+    if (!event.currentTarget.checked) {
+        audioBeat.pause();
+        showName.innerHTML = ``;
+    }
+
+    checkOnMobile.checked = event.currentTarget.checked;
+    checkOnOff.checked = event.currentTarget.checked;
+}
+
 /* -------------------MAIN----------------- */
 
 function main()
 {
 
-    changeBeats.addEventListener('change', (e) => {
-        beatSrc = {
-            firstBeat : {
-                route: !changeBeats.checked ? Clap : Style,
-                 name: !changeBeats.checked ? 'Clap' : 'Style'
-             },
-             secondBeat : {
-                route: !changeBeats.checked ? Heater1 : Humble,
-                name: !changeBeats.checked ? 'Heater-1' : 'Humble'
-            },
-            thirdBeat: {
-                route:!changeBeats.checked ? Heater2: Fluorescent,
-                name: !changeBeats.checked ? 'Heater-2' : 'Fluorescent Adolescent'
-            },
-            fourthBeat: {
-                route:!changeBeats.checked ? Heater3 : UntilFound,
-                name: !changeBeats.checked ? 'Heater-3' : 'Until I Found You'
-            },
-            fifthBeat: {
-                route:!changeBeats.checked ? Heater4 : Breezeblocks,
-                name: !changeBeats.checked ? 'Heater-4' : 'Breezeblocks'
-            },
-            sixthBeat: {
-                route:!changeBeats.checked ? OpenHH: Ojos,
-                name: !changeBeats.checked ? 'Open-hh' : 'Ojos color sol'
-            },
-            seventhBeat: {
-                route:!changeBeats.checked ? Stressed : OjosMarrones,
-                name: !changeBeats.checked ? 'Stressed Out Remix' : 'Ojos marrones'
-            },
-            eightBeat: {
-                route:!changeBeats.checked ? Moscow : Quinientos,
-                name: !changeBeats.checked ? 'Moscow-mule' : '512'
-            },
-            ninethBeat: {
-                route:!changeBeats.checked ? Sunflower : Provenza,
-                name: !changeBeats.checked ? 'Sunflower' : 'Provenza'
-            }
-        };
-    })
+    changeBeats.addEventListener('change', changeTheBeat)
+    changeBeatsMobile.addEventListener('change', changeTheBeat)
     //start at zero volume
    
     
@@ -240,12 +258,8 @@ function main()
         }
     }
 
-    checkOnOff.addEventListener('change', (event) => {
-        if (!event.currentTarget.checked) {
-            audioBeat.pause();
-            showName.innerHTML = ``;
-        }
-    })
+    checkOnOff.addEventListener('change', controlPower);
+    checkOnMobile.addEventListener('change', controlPower);
     
     volumeKnob.addEventListener(getMouseDown(), onMouseDown); //listen for mouse button click
 
