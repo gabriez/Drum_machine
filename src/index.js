@@ -308,6 +308,7 @@ function onMouseMove(event)
 
         //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
         volumeSetting = Math.floor(finalAngleInDegrees / (270 / 100));
+        console.log(finalAngleInDegrees / (270 / 100))
 
         tickHighlightPosition = Math.round((volumeSetting * 2.7) / 10); //interpolate how many ticks need to be highlighted
 

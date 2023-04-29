@@ -235,6 +235,27 @@ body {
     gap: 71px;
 }
 
+.switch-mobile {
+    display: none;
+}
+
+@media screen and (max-width: 525px) {
+    .switch {
+        display: none;
+    }
+
+    .switch-mobile {
+        display: flex;
+        gap: 71px;
+    }
+
+    .volume_and_name {
+        display: flex;
+        width: 100vw;
+        justify-content: space-evenly;
+    }
+}
+
 .turnOnOff_checkbox {
     display: none;
 }

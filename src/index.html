@@ -16,20 +16,49 @@
 
             </canvas>
             <div class="volume_and_name">
-                <div class="knob-surround">
+                <div>
 
-                    <div id="knob" class="knob"></div>
+                    <div class="knob-surround">
 
-                    <span class="min">Min</span>
-                    <span class="max">Max</span>
+                        <div id="knob" class="knob"></div>
 
-                    <div id="tickContainer" class="ticks"></div>
+                        <span class="min">Min</span>
+                        <span class="max">Max</span>
 
+                        <div id="tickContainer" class="ticks"></div>
+
+                    </div>
+
+
+                    <div id="showName" class="showName">
+
+                    </div>
                 </div>
+                <div class="switch switch-mobile">
 
+                    <!-- <p> Change beats </p> -->
+                    <div class="switch_sounds_container">
+                        <p> Change beats </p>
+                        <input type="checkbox" name="switch_sounds" id="switch_sounds"
+                            class="switch_sounds turnOnOff_checkbox">
+                        <label for="switch_sounds" class="switch_sounds_label switch_container">
 
-                <div id="showName" class="showName">
+                            <div class="switch_moving"></div>
 
+                        </label>
+                    </div>
+
+                    <div class="turnOnOff_container">
+                        <span class="On_Off_Span">OFF</span>
+
+                        <input type="checkbox" name="turnOnOff" class="turnOnOff_checkbox" id="turnOnOff_checkbox">
+                        <label for="turnOnOff_checkbox" class="turnOnOff_label" id="turnOnOff_label">
+                            <div class="circle_container">
+                                <div class="circle_moving"></div>
+                            </div>
+                        </label>
+                        <span class="On_Off_Span">ON</span>
+                    </div>
                 </div>
             </div>
 
